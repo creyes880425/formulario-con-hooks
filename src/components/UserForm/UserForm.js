@@ -18,7 +18,58 @@ const UserFrom = ({userForm, setUserForm }) => {
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ confirmPassword, setConfirmPassword ] = useState("");
+    
+    
+    const [firstNameError, setFirstNameError] = useState("");
+    const [lastNameError, setLastNameError] = useState("");
+    const [emailError, setEmailError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+    const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
+    const handleFirstName = (e) => {
+        setFirstName(e.target.value);
+        if(e.target.value.length > 0 && e.target.value.length < 2) {
+            setFirstNameError("First Name must be at least 2 characters");
+        } else {
+            setFirstNameError("");
+        }
+    }
+
+    const handleLastName = (e) => {
+        setLastName(e.target.value);
+        if(e.target.value.length > 0 && e.target.value.length < 2) {
+            setLastNameError("Last Name must be at least 2 characters");
+        } else {
+            setLastNameError("");
+        }
+    }
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+        if(e.target.value.length > 0 && e.target.value.length < 5) {
+            setEmailError("Email must be at least 5 characters");
+        } else {
+            setEmailError("");
+        }
+    }
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+        if(e.target.value.length > 0 && e.target.value.length < 8) {
+            setPasswordError("Password must be at least 8 characters");
+        } else {
+            setPasswordError("");
+        }
+    }
+
+    const handleConfirmPassword = (e) => {
+        setConfirmPassword(e.target.value);
+        if(e.target.value.length > 0 && password !== e.target.value) {
+            setConfirmPasswordError("Passwords must match");
+        } else {
+            setConfirmPasswordError("");
+        }
+    }
 
     const createUser = (e) => {
         e.preventDefault();
@@ -50,9 +101,10 @@ const UserFrom = ({userForm, setUserForm }) => {
                                     id="firstName" 
                                     name="firstName" 
                                     placeholder="First Name" 
-                                    type="text" onChange={ (e) => setFirstName(e.target.value) } 
+                                    type="text" onChange={ handleFirstName } 
                                     value={ firstName } 
                                 />
+                                { firstNameError ?<p style={{color:'red'}}>{ firstNameError }</p> : '' }
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -63,9 +115,10 @@ const UserFrom = ({userForm, setUserForm }) => {
                                     name="lastName" 
                                     placeholder="Last Name" 
                                     type="text" 
-                                    onChange={ (e) => setLastName(e.target.value) } 
+                                    onChange={ handleLastName } 
                                     value={ lastName } 
                                 />
+                                { lastNameError ?<p style={{color:'red'}}>{ lastNameError }</p> : '' }
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -76,9 +129,10 @@ const UserFrom = ({userForm, setUserForm }) => {
                                     name="email" 
                                     placeholder="Email" 
                                     type="email" 
-                                    onChange={ (e) => setEmail(e.target.value) } 
+                                    onChange={ handleEmail } 
                                     value={ email } 
                                 />
+                                { emailError ?<p style={{color:'red'}}>{ emailError }</p> : '' }
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -89,9 +143,10 @@ const UserFrom = ({userForm, setUserForm }) => {
                                     name="password" 
                                     placeholder="Password" 
                                     type="password" 
-                                    onChange={ (e) => setPassword(e.target.value) } 
+                                    onChange={ handlePassword } 
                                     value={ password }
                                 />
+                                { passwordError ?<p style={{color:'red'}}>{ passwordError }</p> : '' }
                             </Col>
                         </FormGroup>
                         <FormGroup row>
@@ -102,9 +157,10 @@ const UserFrom = ({userForm, setUserForm }) => {
                                     name="confirmPassword" 
                                     placeholder="Confirm Password" 
                                     type="password" 
-                                    onChange={ (e) => setConfirmPassword(e.target.value) } 
+                                    onChange={ handleConfirmPassword } 
                                     value={ confirmPassword }
                                 />
+                                { confirmPasswordError ?<p style={{color:'red'}}>{ confirmPasswordError }</p> : '' }
                             </Col>
                         </FormGroup>
                         <FormGroup row>

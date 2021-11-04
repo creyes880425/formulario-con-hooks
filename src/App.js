@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import FormDetail from './components/FormDetail/FormDetail';
 import UserFrom from './components/UserForm/UserForm';
